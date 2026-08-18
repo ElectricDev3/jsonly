@@ -13,15 +13,16 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0f172a",
-          borderRadius: 14,
-          color: "#ffffff",
-          fontSize: 34,
-          fontWeight: 700,
-          fontFamily: "sans-serif",
+          background: "#142840",
+          border: "2px solid #2a4a6b",
+          borderRadius: 10,
+          color: "#5fd4d0",
+          fontSize: 30,
+          fontWeight: 600,
+          fontFamily: "monospace",
         }}
       >
-        J
+        {"{}"}
       </div>
     ),
     { ...size }

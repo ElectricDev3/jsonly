@@ -36,8 +36,10 @@ export function FormatterView() {
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-      <div className="rounded-lg border border-slate-200 bg-white p-5">
-        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">Entrada</p>
+      <div className="rounded-sm border border-[var(--line)] bg-[var(--surface)] p-5">
+        <p className="mb-2.5 font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.16em] text-[var(--text-dim)]">
+          Entrada
+        </p>
         <JsonEditor
           value={input}
           onChange={setInput}
@@ -46,16 +48,18 @@ export function FormatterView() {
         />
       </div>
 
-      <div className="rounded-lg border border-slate-200 bg-white p-5">
+      <div className="rounded-sm border border-[var(--line)] bg-[var(--surface)] p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex gap-1 rounded-md bg-slate-100 p-1">
+          <div className="flex gap-1 rounded-sm border border-[var(--line-soft)] bg-[var(--bg)] p-1">
             {(["tree", "formatted", "minified"] as const).map((m) => (
               <button
                 key={m}
                 onClick={() => setMode(m)}
                 disabled={!!error}
-                className={`rounded px-2.5 py-1 text-xs font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
-                  mode === m ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                className={`rounded-sm px-2.5 py-1 text-xs font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
+                  mode === m
+                    ? "bg-[var(--accent-cyan)] text-[#0e1a2b]"
+                    : "text-[var(--text-muted)] hover:text-[var(--text)]"
                 }`}
               >
                 {m === "tree" ? "Árbol" : m === "formatted" ? "Formateado" : "Minificado"}
@@ -68,7 +72,7 @@ export function FormatterView() {
               <select
                 value={indent}
                 onChange={(e) => setIndent(Number(e.target.value))}
-                className="rounded-md border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700 focus:border-slate-500 focus:outline-none"
+                className="rounded-sm border border-[var(--line)] bg-[var(--bg)] px-2 py-1 text-xs text-[var(--text-muted)] focus:border-[var(--accent-cyan)] focus:outline-none"
               >
                 <option value={2}>2 espacios</option>
                 <option value={4}>4 espacios</option>
@@ -86,7 +90,7 @@ export function FormatterView() {
         ) : mode === "tree" ? (
           <JsonTreeView value={value as JsonValue} />
         ) : (
-          <pre className="max-h-[28rem] overflow-auto rounded-md bg-slate-50 p-3 font-mono text-xs leading-relaxed text-slate-800">
+          <pre className="max-h-[28rem] overflow-auto rounded-sm border border-[var(--line-soft)] bg-[var(--bg)] p-3 font-[family-name:var(--font-data)] text-xs leading-relaxed text-[var(--text)]">
             {output}
           </pre>
         )}

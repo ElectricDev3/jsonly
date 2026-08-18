@@ -11,26 +11,38 @@ export function JsonlyView() {
 
   return (
     <div>
-      <div className="mb-6">
-        <h1 className="text-xl font-semibold tracking-tight text-slate-900">Herramientas de JSON</h1>
-        <p className="text-sm text-slate-500">
-          Formatea, valida, explora en árbol o compara dos JSON — todo en tu navegador.
-        </p>
+      <div className="mb-8 flex items-end justify-between gap-4 border-b border-[var(--line)] pb-6">
+        <div>
+          <p className="mb-1.5 font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.16em] text-[var(--accent-cyan)]">
+            Hoja 01 · Herramientas
+          </p>
+          <h1 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[var(--text)] sm:text-3xl">
+            De texto plano a estructura legible
+          </h1>
+          <p className="mt-2 max-w-xl text-sm text-[var(--text-muted)]">
+            Formatea, valida con ubicación exacta del error, explora la jerarquía en árbol y compara dos
+            documentos línea a línea.
+          </p>
+        </div>
       </div>
 
-      <div className="mb-6 flex gap-1 rounded-md bg-slate-100 p-1 w-fit">
+      <div className="mb-6 flex w-fit gap-1 rounded-sm border border-[var(--line)] bg-[var(--surface)] p-1">
         <button
           onClick={() => setTab("format")}
-          className={`rounded px-3.5 py-1.5 text-sm font-medium transition-colors ${
-            tab === "format" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+          className={`rounded-sm px-3.5 py-1.5 text-sm font-medium transition-colors ${
+            tab === "format"
+              ? "bg-[var(--accent-cyan)] text-[#0e1a2b]"
+              : "text-[var(--text-muted)] hover:text-[var(--text)]"
           }`}
         >
           Formatear / Validar
         </button>
         <button
           onClick={() => setTab("diff")}
-          className={`rounded px-3.5 py-1.5 text-sm font-medium transition-colors ${
-            tab === "diff" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+          className={`rounded-sm px-3.5 py-1.5 text-sm font-medium transition-colors ${
+            tab === "diff"
+              ? "bg-[var(--accent-cyan)] text-[#0e1a2b]"
+              : "text-[var(--text-muted)] hover:text-[var(--text)]"
           }`}
         >
           Comparar

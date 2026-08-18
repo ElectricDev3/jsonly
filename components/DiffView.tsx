@@ -31,44 +31,57 @@ export function DiffView() {
   return (
     <div>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="rounded-lg border border-slate-200 bg-white p-5">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">JSON A</p>
+        <div className="rounded-sm border border-[var(--line)] bg-[var(--surface)] p-5">
+          <p className="mb-2.5 font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.16em] text-[var(--text-dim)]">
+            JSON A
+          </p>
           <JsonEditor value={inputA} onChange={setInputA} rows={10} onLoadSample={() => setInputA(SAMPLE_JSON)} />
           {parsedA.error && <div className="mt-2"><ValidationError error={parsedA.error} text={inputA} /></div>}
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-5">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">JSON B</p>
+        <div className="rounded-sm border border-[var(--line)] bg-[var(--surface)] p-5">
+          <p className="mb-2.5 font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.16em] text-[var(--text-dim)]">
+            JSON B
+          </p>
           <JsonEditor value={inputB} onChange={setInputB} rows={10} onLoadSample={() => setInputB(SAMPLE_JSON_B)} />
           {parsedB.error && <div className="mt-2"><ValidationError error={parsedB.error} text={inputB} /></div>}
         </div>
       </div>
 
       {diff && (
-        <div className="mt-6 rounded-lg border border-slate-200 bg-white p-5">
+        <div className="mt-6 rounded-sm border border-[var(--line)] bg-[var(--surface)] p-5">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+            <p className="font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.16em] text-[var(--text-dim)]">
               Diferencias línea a línea
             </p>
             {stats && (
-              <p className="font-mono text-xs">
-                <span className="text-emerald-600">+{stats.added}</span>{" "}
-                <span className="text-red-600">-{stats.removed}</span>
+              <p className="font-[family-name:var(--font-data)] text-xs">
+                <span style={{ color: "var(--diff-add-text)" }}>+{stats.added}</span>{" "}
+                <span style={{ color: "var(--diff-remove-text)" }}>-{stats.removed}</span>
               </p>
             )}
           </div>
-          <pre className="max-h-[32rem] overflow-auto rounded-md bg-slate-50 p-3 font-mono text-xs leading-relaxed">
+          <pre className="max-h-[32rem] overflow-auto rounded-sm border border-[var(--line-soft)] bg-[var(--bg)] p-3 font-[family-name:var(--font-data)] text-xs leading-relaxed">
             {diff.map((line, i) => (
               <div
                 key={i}
-                className={
+                className="border-l-2 pl-2"
+                style={
                   line.type === "add"
-                    ? "bg-emerald-50 text-emerald-800"
+                    ? {
+                        background: "var(--diff-add-bg)",
+                        color: "var(--diff-add-text)",
+                        borderColor: "var(--diff-add-border)",
+                      }
                     : line.type === "remove"
-                      ? "bg-red-50 text-red-800"
-                      : "text-slate-600"
+                      ? {
+                          background: "var(--diff-remove-bg)",
+                          color: "var(--diff-remove-text)",
+                          borderColor: "var(--diff-remove-border)",
+                        }
+                      : { color: "var(--text-muted)", borderColor: "transparent" }
                 }
               >
-                <span className="mr-2 inline-block w-3 select-none text-slate-400">
+                <span className="mr-2 inline-block w-3 select-none text-[var(--text-dim)]">
                   {line.type === "add" ? "+" : line.type === "remove" ? "-" : ""}
                 </span>
                 {line.text}

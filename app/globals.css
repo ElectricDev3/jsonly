@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Blueprint / schematic ink palette */
+  --bg: #0e1a2b;
+  --surface: #142840;
+  --surface-raised: #1b3350;
+  --line: #2a4a6b;
+  --line-soft: #1e3652;
+
+  --text: #eaf2fb;
+  --text-muted: #8fa8c4;
+  --text-dim: #5c7893;
+
+  --accent-cyan: #5fd4d0;
+  --accent-cyan-dim: #3a8f8c;
+  --accent-amber: #f2a65a;
+
+  --type-string: #8fd9a8;
+  --type-number: #7ec8e3;
+  --type-const: #c9a6f2;
+  --type-null: #5c7893;
+
+  --diff-add-bg: #12271c;
+  --diff-add-text: #8fd9a8;
+  --diff-add-border: #2e5b44;
+  --diff-remove-bg: #2b151a;
+  --diff-remove-text: #f2a6a6;
+  --diff-remove-border: #5b2e33;
+
+  --error-bg: #241318;
+  --error-border: #5b2e33;
+  --error-text: #f2a6a6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-data);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
+}
+
+::selection {
+  background: var(--accent-cyan);
+  color: #0e1a2b;
+}
+
+* {
+  scrollbar-color: var(--line) transparent;
+  scrollbar-width: thin;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
